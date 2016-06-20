@@ -1,8 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {BandService} from './band.service';
 import {band} from './band.model';
+import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
+import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
+import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
 
 @Component({
+    directives: [MD_BUTTON_DIRECTIVES, MD_CARD_DIRECTIVES, MD_GRID_LIST_DIRECTIVES],
     moduleId: module.id,
     selector: 'band-list',
     templateUrl: 'band-list.component.html'
@@ -13,7 +17,7 @@ export class BandListComponent implements OnInit {
 
     constructor(private _bandService: BandService) { }
 
-    ngOnInit(): void { 
+    ngOnInit(): void {
         this._bandService.getBands()
             .subscribe(
                 response => this.bands = response,

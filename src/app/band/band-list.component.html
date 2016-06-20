@@ -1,3 +1,27 @@
 <ul>
     <li *ngFor="let band of bands">{{band.name}}</li>
 </ul>
+
+<!--
+<md-grid-list cols="4" [style.background]="'lightblue'">
+  <md-grid-tile>One</md-grid-tile>
+  <md-grid-tile>Two</md-grid-tile>
+  <md-grid-tile>Three</md-grid-tile>
+  <md-grid-tile>Four</md-grid-tile>
+</md-grid-list>
+-->
+
+<table *ngIf="bands">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let band of bands">
+    <td>{{band.id}}</td>
+    <td>{{band.name}}</td>
+    <td>{{band.rating}}</td>
+  </tr>
+</table>
