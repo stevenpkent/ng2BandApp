@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { HTTP_PROVIDERS } from '@angular/http';
+import {Component} from '@angular/core';
+import {HTTP_PROVIDERS} from '@angular/http';
 import 'rxjs/Rx'; //observable - load all features
 import {BandService} from './band/band.service';
 import {BandListComponent} from './band/band-list.component';
@@ -13,5 +13,5 @@ import {BandListComponent} from './band/band-list.component';
   styleUrls: ['app.component.css']
 })
 export class AppComponent {
-  title = 'Band App';
+  title: string = 'Band App';
 }
