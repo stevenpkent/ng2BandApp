@@ -7,14 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
-//http://testspkapi.azurewebsites.net/api/artists/3
 var BandService = (function () {
     function BandService(_http) {
         this._http = _http;
-        this.baseUrl = 'http://testspkapi.azurewebsites.net/api/';
+        this.baseUrl = 'http://testspkapi.azurewebsites.net/api/'; //http://testspkapi.azurewebsites.net/api/artists/3
     }
     BandService.prototype.getBands = function () {
         return this._http.get(this.baseUrl + "artists/")
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    BandService.prototype.getBand = function (id) {
+        return this._http.get(this.baseUrl + "artists/" + id)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };

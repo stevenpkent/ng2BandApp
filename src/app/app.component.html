@@ -2,4 +2,9 @@
   {{title}}
 </h1>
 
-<band-list></band-list>
+<nav>
+  <a [routerLink]="['/bands']">Bands</a>
+  <a [routerLink]="['/band', {id: 5}]">The Freak Outs</a>
+</nav>
+
+<router-outlet></router-outlet>

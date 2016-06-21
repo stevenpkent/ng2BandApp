@@ -1,7 +1,3 @@
-<ul>
-    <li *ngFor="let band of bands">{{band.name}}</li>
-</ul>
-
 <!--
 <md-grid-list cols="4" [style.background]="'lightblue'">
   <md-grid-tile>One</md-grid-tile>
@@ -11,6 +7,9 @@
 </md-grid-list>
 -->
 
+<img src="app/asset/image/loading.gif" width="80px"
+  *ngIf="loading">
+
 <table *ngIf="bands">
   <thead>
     <tr>
@@ -19,9 +18,11 @@
       <th>Rating</th>
     </tr>
   </thead>
-  <tr *ngFor="let band of bands">
+  <tr *ngFor="let band of bands" (click)="selected(band)">
     <td>{{band.id}}</td>
     <td>{{band.name}}</td>
     <td>{{band.rating}}</td>
   </tr>
 </table>
+
+{{selectedBand | json}}

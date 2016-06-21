@@ -13,16 +13,28 @@ import {band} from './band.model';
 })
 export class BandListComponent implements OnInit {
     bands: band[];
+    selectedBand: band;
     errorMessage: any;
+    loading: boolean = false;
 
     constructor(private _bandService: BandService) { }
 
     ngOnInit(): void {
+        this.loading = true;
         this._bandService.getBands()
-            .subscribe(
-                response => this.bands = response,
-                error => this.errorMessage = <any>error
-            );
+        .subscribe(
+            (response: band[]): void => {
+                this.bands = response;
+                this.loading = false;
+            },
+            (error: any): void => {
+                this.errorMessage = <any>error;
+            }
+        );
+    }
+
+    selected(band: band): void {
+        this.selectedBand = band;
     }
 
 }

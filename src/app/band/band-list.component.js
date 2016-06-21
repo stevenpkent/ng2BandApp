@@ -12,11 +12,21 @@ var grid_list_1 = require('@angular2-material/grid-list');
 var BandListComponent = (function () {
     function BandListComponent(_bandService) {
         this._bandService = _bandService;
+        this.loading = false;
     }
     BandListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.loading = true;
         this._bandService.getBands()
-            .subscribe(function (response) { return _this.bands = response; }, function (error) { return _this.errorMessage = error; });
+            .subscribe(function (response) {
+            _this.bands = response;
+            _this.loading = false;
+        }, function (error) {
+            _this.errorMessage = error;
+        });
+    };
+    BandListComponent.prototype.selected = function (band) {
+        this.selectedBand = band;
     };
     BandListComponent = __decorate([
         core_1.Component({
