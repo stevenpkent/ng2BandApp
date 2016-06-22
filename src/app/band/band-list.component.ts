@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
 import {MD_BUTTON_DIRECTIVES} from '@angular2-material/button';
 import {MD_GRID_LIST_DIRECTIVES} from '@angular2-material/grid-list';
@@ -13,15 +14,15 @@ import {band} from './band.model';
 })
 export class BandListComponent implements OnInit {
     bands: band[];
-    selectedBand: band;
     errorMessage: any;
     loading: boolean = false;
 
-    constructor(private _bandService: BandService) { }
+    constructor(private bandService: BandService,
+                private router: Router) { }
 
     ngOnInit(): void {
         this.loading = true;
-        this._bandService.getBands()
+        this.bandService.getBands()
         .subscribe(
             (response: band[]): void => {
                 this.bands = response;
@@ -33,8 +34,8 @@ export class BandListComponent implements OnInit {
         );
     }
 
-    selected(band: band): void {
-        this.selectedBand = band;
+    onSelect(band: band): void {
+        this.router.navigate(['/band', band.id]);
     }
 
 }

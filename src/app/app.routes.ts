@@ -1,8 +1,4 @@
-/**
- * Created by steven on 6/20/16.
- */
-
-import { provideRouter, RouterConfig } from '@angular/router';
+import {provideRouter, RouterConfig} from '@angular/router';
 import {BandListComponent} from './band/band-list.component';
 import {BandDetailComponent} from './band/band-detail.component';
 

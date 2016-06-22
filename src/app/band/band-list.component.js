@@ -10,14 +10,15 @@ var card_1 = require('@angular2-material/card');
 var button_1 = require('@angular2-material/button');
 var grid_list_1 = require('@angular2-material/grid-list');
 var BandListComponent = (function () {
-    function BandListComponent(_bandService) {
-        this._bandService = _bandService;
+    function BandListComponent(bandService, router) {
+        this.bandService = bandService;
+        this.router = router;
         this.loading = false;
     }
     BandListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.loading = true;
-        this._bandService.getBands()
+        this.bandService.getBands()
             .subscribe(function (response) {
             _this.bands = response;
             _this.loading = false;
@@ -25,8 +26,8 @@ var BandListComponent = (function () {
             _this.errorMessage = error;
         });
     };
-    BandListComponent.prototype.selected = function (band) {
-        this.selectedBand = band;
+    BandListComponent.prototype.onSelect = function (band) {
+        this.router.navigate(['/band', band.id]);
     };
     BandListComponent = __decorate([
         core_1.Component({

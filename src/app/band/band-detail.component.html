@@ -1,3 +1,7 @@
-hi
+<div *ngIf="band">
+  <label>Id</label><span>{{band.id}}</span>
+  <label>Name</label><span>{{band.name}}</span>
+  <label>Rating</label><span>{{band.rating}}</span>
+</div>
 
 {{band | json}}

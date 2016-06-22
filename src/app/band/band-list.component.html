@@ -18,11 +18,10 @@
       <th>Rating</th>
     </tr>
   </thead>
-  <tr *ngFor="let band of bands" (click)="selected(band)">
+  <tr *ngFor="let band of bands"
+      (click)="onSelect(band)">
     <td>{{band.id}}</td>
     <td>{{band.name}}</td>
     <td>{{band.rating}}</td>
   </tr>
 </table>
-
-{{selectedBand | json}}
