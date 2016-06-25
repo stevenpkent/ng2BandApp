@@ -5,19 +5,19 @@ import {band} from './band.model';
 
 @Injectable()
 export class BandService {
-  baseUrl: string = 'http://testspkapi.azurewebsites.net/api/'; //http://testspkapi.azurewebsites.net/api/artists/3
+  baseUrl: string = 'http://testspkapi.azurewebsites.net/api/artists/'; 
 
-  constructor(private _http: Http) {}
+  constructor(private http: Http) {}
 
   getBands(): Observable<band[]> {
-    return this._http.get(`${this.baseUrl}artists/`)
+    return this.http.get(this.baseUrl)
       .map((response: Response) => <band[]>response.json())
       //for debugging .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
   }
 
   getBand(id: number): Observable<band> {
-    return this._http.get(`${this.baseUrl}artists/${id}`)
+    return this.http.get(`${this.baseUrl}${id}`)
       .map((response: Response) => <band>response.json())
       .catch(this.handleError);
   }

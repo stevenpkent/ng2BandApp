@@ -1,7 +1,22 @@
 <div *ngIf="band">
-  <label>Id</label><span>{{band.id}}</span>
-  <label>Name</label><span>{{band.name}}</span>
-  <label>Rating</label><span>{{band.rating}}</span>
+  <h2>Band</h2>
+  <label>Id </label><span>{{band.id}}</span>
+  <label>Name </label><span>{{band.name}}</span>
+  <label>Rating </label><span>{{band.rating}}</span>
+
+  <div *ngIf="band.albums.length">
+    <h2>Albums</h2>
+    <ul *ngFor="let album of band.albums">
+      <li (click)="getSongs(album.id)">{{album.name}} - {{album.year}}</li>
+    </ul>
+  </div>
 </div>
 
-{{band | json}}
+<div *ngIf="songs">
+  <h2>Songs</h2>
+  <ul *ngFor="let song of songs">
+    {{song.name}}
+  </ul>
+</div>
+
+
