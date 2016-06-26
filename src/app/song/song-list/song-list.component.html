@@ -1,6 +1,13 @@
-<div *ngIf="songs">
+<div>
   <h2>Songs</h2>
-  <ul *ngFor="let song of songs">
-    {{song.name}}
-  </ul>
+  <div *ngIf="songs && songs.length">
+    <ul *ngFor="let song of songs">
+      {{song.name}}
+    </ul>
+  </div>
+
+  <div *ngIf="songs && !songs.length">
+    <span>No songs for this album currently</span>
+  </div>
+
 </div>

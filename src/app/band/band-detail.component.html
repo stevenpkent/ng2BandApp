@@ -4,14 +4,16 @@
   <label>Name </label><span>{{band.name}}</span>
   <label>Rating </label><span>{{band.rating}}</span>
 
+  <h2>Albums</h2>
   <div *ngIf="band.albums.length">
-    <h2>Albums</h2>
     <ul *ngFor="let album of band.albums">
       <li (click)="selectedAlbumId = album.id">{{album.name}} - {{album.year}}</li>
     </ul>
   </div>
+  <div *ngIf="!band.albums.length">
+    <span>No albums for this band currently</span>
+  </div>
 </div>
-
 
 <song-list [albumId]="selectedAlbumId" *ngIf="selectedAlbumId"></song-list>
 
