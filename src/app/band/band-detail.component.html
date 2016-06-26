@@ -7,16 +7,14 @@
   <div *ngIf="band.albums.length">
     <h2>Albums</h2>
     <ul *ngFor="let album of band.albums">
-      <li (click)="getSongs(album.id)">{{album.name}} - {{album.year}}</li>
+      <li (click)="selectedAlbumId = album.id">{{album.name}} - {{album.year}}</li>
     </ul>
   </div>
 </div>
 
-<div *ngIf="songs">
-  <h2>Songs</h2>
-  <ul *ngFor="let song of songs">
-    {{song.name}}
-  </ul>
-</div>
+
+<song-list [albumId]="selectedAlbumId" *ngIf="selectedAlbumId"></song-list>
+
+
 
 

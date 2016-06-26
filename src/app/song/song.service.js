@@ -7,28 +7,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var core_1 = require('@angular/core');
 var Observable_1 = require('rxjs/Observable');
-var BandService = (function () {
-    function BandService(http) {
+var SongService = (function () {
+    function SongService(http) {
         this.http = http;
-        this.baseUrl = 'http://testspkapi.azurewebsites.net/api/artists/';
+        this.baseUrl = 'http://testspkapi.azurewebsites.net/api/song/';
     }
-    BandService.prototype.getBands = function () {
-        return this.http.get(this.baseUrl)
+    SongService.prototype.getSongs = function (albumId) {
+        var urlSuffix = 'getSongs/';
+        return this.http.get("" + this.baseUrl + urlSuffix + albumId)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    BandService.prototype.getBand = function (id) {
-        return this.http.get("" + this.baseUrl + id)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    BandService.prototype.handleError = function (error) {
+    SongService.prototype.handleError = function (error) {
         console.error(error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
-    BandService = __decorate([
+    SongService = __decorate([
         core_1.Injectable()
-    ], BandService);
-    return BandService;
+    ], SongService);
+    return SongService;
 }());
-exports.BandService = BandService;
+exports.SongService = SongService;

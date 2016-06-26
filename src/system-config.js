@@ -38,6 +38,7 @@ var barrels = [
     'app',
     'app/shared',
     'app/band/band-list',
+    'app/song/song-list',
 ];
 var cliSystemConfigPackages = {};
 barrels.forEach(function (barrelName) {

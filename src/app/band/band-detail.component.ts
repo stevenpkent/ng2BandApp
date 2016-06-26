@@ -2,24 +2,22 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BandService} from './band.service';
 import {band} from './band.model';
-import { album } from './album.model';
-import { SongService } from './song.service';
-import { song } from './song.model';
+import { album } from '../album/album.model';
+import { SongListComponent } from '../song/song-list/song-list.component';
 
 @Component({
+    directives: [SongListComponent],
     moduleId: module.id,
-    providers: [SongService],
     selector: 'band-detail',
     templateUrl: 'band-detail.component.html'
 })
 export class BandDetailComponent implements OnInit {
     band: band;
-    songs: song[];
+    selectedAlbumId: number;
     private subscription: any; //keep a reference to the routeParam subscription so we can clean up in ngOnDestroy
 
     constructor(private route: ActivatedRoute,
-                private bandService: BandService,
-                private songService: SongService) { }
+                private bandService: BandService) { }
 
     ngOnInit(): void {
       this.subscription = this.route.params.subscribe(params => {
@@ -38,16 +36,5 @@ export class BandDetailComponent implements OnInit {
 
     ngOnDestory(): void {
       this.subscription.unsubscribe(); //unsubscribe before angular destroys the component
-    }
-
-    getSongs(albumId: number): void {
-        this.songService.getSongs(albumId)
-        .subscribe(
-          (response: song[]): void => {
-            this.songs = response;
-          },
-          (error: any): void => {
-          }
-        );
     }
 }
