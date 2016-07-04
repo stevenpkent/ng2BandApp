@@ -10,7 +10,9 @@
 <img src="app/asset/image/loading.gif" width="80px"
   *ngIf="loading">
 
-<table *ngIf="bands">
+<span *ngIf="errorMessage">{{errorMessage | json}}</span>
+
+<table *ngIf="bandsRxObservable">
   <thead>
     <tr>
       <th>Id</th>
@@ -18,7 +20,23 @@
       <th>Rating</th>
     </tr>
   </thead>
-  <tr *ngFor="let band of bands"
+  <tr *ngFor="let band of bandsRxObservable | async"
+      (click)="onSelect(band)">
+    <td>{{band.id}}</td>
+    <td>{{band.name}}</td>
+    <td>{{band.rating}}</td>
+  </tr>
+</table>
+
+<table *ngIf="bandsPromise">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Rating</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let band of bandsPromise"
       (click)="onSelect(band)">
     <td>{{band.id}}</td>
     <td>{{band.name}}</td>

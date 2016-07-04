@@ -9,11 +9,19 @@ export class BandService {
 
   constructor(private http: Http) {}
 
-  getBands(): Observable<band[]> {
+  getBands_RxObservable(): Observable<band[]> {
     return this.http.get(this.baseUrl)
       .map((response: Response) => <band[]>response.json())
-      //for debugging .do(data => console.log('All: ' + JSON.stringify(data)))
       .catch(this.handleError);
+  }
+
+  getBands_Promise(): Promise<band[]> { //Ward Bell recommends this. use observable but convert it promise using toPromise()
+    return this.http.get(this.baseUrl)
+      .map((response: Response) => <band[]>response.json())
+      .toPromise() 
+      .catch((error: any) => {
+        return Promise.reject(error);
+      });
   }
 
   getBand(id: number): Observable<band> {

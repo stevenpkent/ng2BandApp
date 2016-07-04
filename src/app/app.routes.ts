@@ -2,7 +2,7 @@ import {provideRouter, RouterConfig} from '@angular/router';
 import {BandListComponent} from './band/band-list.component';
 import {BandDetailComponent} from './band/band-detail.component';
 
-export const routes: RouterConfig = [
+const routes: RouterConfig = [
   { path: 'bands', component: BandListComponent },
   { path: 'band/:id', component: BandDetailComponent }
 ];
