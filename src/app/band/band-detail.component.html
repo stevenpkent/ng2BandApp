@@ -15,7 +15,9 @@
   </div>
 </div>
 
-<song-list [albumId]="selectedAlbumId" *ngIf="selectedAlbumId"></song-list>
+<song-list [albumId]="selectedAlbumId" 
+            *ngIf="selectedAlbumId"
+            (emitToParent)=emitFromChild($event)></song-list>
 
 
 

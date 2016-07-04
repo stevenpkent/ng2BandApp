@@ -1,7 +1,7 @@
 <div>
   <h2>Songs</h2>
   <div *ngIf="songs && songs.length">
-    <ul *ngFor="let song of songs">
+    <ul *ngFor="let song of songs" (click)="selectSong(song)">
       {{song.name}}
     </ul>
   </div>

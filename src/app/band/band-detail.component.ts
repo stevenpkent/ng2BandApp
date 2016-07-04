@@ -1,9 +1,10 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BandService} from './band.service';
 import {band} from './band.model';
 import { album } from '../album/album.model';
 import { SongListComponent } from '../song/song-list/song-list.component';
+import {song} from '../song/song.model';
 
 @Component({
     directives: [SongListComponent],
@@ -15,6 +16,7 @@ export class BandDetailComponent implements OnInit {
     band: band;
     selectedAlbumId: number;
     private subscription: any; //keep a reference to the routeParam subscription so we can clean up in ngOnDestroy
+    @ViewChild(SongListComponent) viewChild: SongListComponent; //allows parent access into a child
 
     constructor(private route: ActivatedRoute,
                 private bandService: BandService) { }
@@ -37,4 +39,11 @@ export class BandDetailComponent implements OnInit {
     ngOnDestory(): void {
       this.subscription.unsubscribe(); //unsubscribe before angular destroys the component
     }
+
+    emitFromChild(songName: string) {
+        alert('you chose ' + songName);
+        this.viewChild.calledFromParent(songName); //parent calling a function that exists on the child
+    }
+
+    
 }

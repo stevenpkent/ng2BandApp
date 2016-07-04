@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChange} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges, SimpleChange} from '@angular/core';
 import {song} from '../song.model';
 import {SongService} from '../song.service';
 
@@ -11,6 +11,7 @@ import {SongService} from '../song.service';
 })
 export class SongListComponent implements OnChanges {
   @Input() albumId: number;
+  @Output() emitToParent = new EventEmitter<string>(); //emit data to parent component
   songs: song[];
 
   constructor(private songService: SongService) {}
@@ -30,4 +31,11 @@ export class SongListComponent implements OnChanges {
       );
   }
 
+  selectSong(song: song): void {
+    this.emitToParent.emit(song.name); //emit data to parent component
+  }
+
+  calledFromParent(songName: string) {
+      alert('this is your parent calling ' + songName);
+    }
 }
