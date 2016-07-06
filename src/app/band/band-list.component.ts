@@ -20,7 +20,6 @@ export class BandListComponent implements OnInit {
     bandsRxObservable: Observable<band[]>;
     bandsPromise: band[];
     errorMessage: any;
-    loading: boolean = false;
 
     constructor(private bandService: BandService,
                 private router: Router) { }
@@ -28,15 +27,15 @@ export class BandListComponent implements OnInit {
     ngOnInit(): void {
         /* RxObservable */
         //in this style you convert the Observable<band[]> from the service here
-        /*this.loading = true;
+        /*
         this.bandService.getBandsRxObservable()
         .subscribe(
             (response: band[]): void => {
                 this.bandsRxObservable = response;
-                this.loading = false;
+                
             },
             (error: any): void => {
-                this.loading = false;
+                
                 this.errorMessage = <any>error;
             }
         );*/
@@ -51,9 +50,7 @@ export class BandListComponent implements OnInit {
         /* Promise */
         this.bandService.getBands_Promise() //Ward Bell recommends this
         .then((response: band[]): void => {
-            this.loading = true;
-            this.bandsPromise = response;
-            this.loading = false;
+            this.bandsPromise = response;        
         })
         .catch((error: any): void => {
             console.log(error);
