@@ -48,5 +48,7 @@ export class BandDetailComponent implements OnInit {
         this.viewChild.calledFromParent(songName); //parent calling a function that exists on the child
     }
 
-    
+    onSubmit() {
+      alert('to do: add update capability...');
+    }
 }
