@@ -26,6 +26,14 @@ var BandDetailComponent = (function () {
     BandDetailComponent.prototype.ngOnDestory = function () {
         this.subscription.unsubscribe(); //unsubscribe before angular destroys the component
     };
+    BandDetailComponent.prototype.emitFromChild = function (songName) {
+        alert('you chose ' + songName);
+        this.viewChild.calledFromParent(songName); //parent calling a function that exists on the child
+    };
+    __decorate([
+        //keep a reference to the routeParam subscription so we can clean up in ngOnDestroy
+        core_1.ViewChild(song_list_component_1.SongListComponent)
+    ], BandDetailComponent.prototype, "viewChild");
     BandDetailComponent = __decorate([
         core_1.Component({
             directives: [song_list_component_1.SongListComponent],

@@ -6,20 +6,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/Rx'); //observable - load all features
+var http_1 = require('@angular/http'); //import http capability at app.component level
+require('./rxjs-operators');
 var router_1 = require('@angular/router');
-var band_service_1 = require('./band/band.service');
-var band_list_component_1 = require('./band/band-list.component');
+var band_service_1 = require('./band/band.service'); //available to all children if done here
+var app_routes_1 = require('./app.routes');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(router) {
+        this.router = router;
         this.title = 'Band App';
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.router.navigate(['/bands']);
+    };
     AppComponent = __decorate([
         core_1.Component({
-            directives: [router_1.ROUTER_DIRECTIVES, band_list_component_1.BandListComponent],
+            directives: [router_1.ROUTER_DIRECTIVES],
             moduleId: module.id,
-            providers: [http_1.HTTP_PROVIDERS, band_service_1.BandService],
+            providers: [http_1.HTTP_PROVIDERS,
+                app_routes_1.APP_ROUTER_PROVIDERS,
+                band_service_1.BandService],
             selector: 'app-root',
             templateUrl: 'app.component.html',
             styleUrls: ['app.component.css']

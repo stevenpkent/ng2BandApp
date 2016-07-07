@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/common';
-import {ActivatedRoute} from "@angular/router";
+import {NgForm} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
 
 import {BandService} from './band.service';
 import {band} from './band.model';

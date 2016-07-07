@@ -12,10 +12,18 @@ var BandService = (function () {
         this.http = http;
         this.baseUrl = 'http://testspkapi.azurewebsites.net/api/artists/';
     }
-    BandService.prototype.getBands = function () {
+    BandService.prototype.getBands_RxObservable = function () {
         return this.http.get(this.baseUrl)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
+    };
+    BandService.prototype.getBands_Promise = function () {
+        return this.http.get(this.baseUrl)
+            .map(function (response) { return response.json(); })
+            .toPromise()
+            .catch(function (error) {
+            return Promise.reject(error);
+        });
     };
     BandService.prototype.getBand = function (id) {
         return this.http.get("" + this.baseUrl + id)

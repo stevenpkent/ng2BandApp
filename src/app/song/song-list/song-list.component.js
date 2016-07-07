@@ -10,6 +10,7 @@ var song_service_1 = require('../song.service');
 var SongListComponent = (function () {
     function SongListComponent(songService) {
         this.songService = songService;
+        this.emitToParent = new core_1.EventEmitter(); //emit data to parent component
     }
     SongListComponent.prototype.ngOnChanges = function (changes) {
         this.getSongs(changes['albumId'].currentValue);
@@ -22,9 +23,18 @@ var SongListComponent = (function () {
         }, function (error) {
         });
     };
+    SongListComponent.prototype.selectSong = function (song) {
+        this.emitToParent.emit(song.name); //emit data to parent component
+    };
+    SongListComponent.prototype.calledFromParent = function (songName) {
+        alert('this is your parent calling ' + songName);
+    };
     __decorate([
         core_1.Input()
     ], SongListComponent.prototype, "albumId");
+    __decorate([
+        core_1.Output()
+    ], SongListComponent.prototype, "emitToParent");
     SongListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

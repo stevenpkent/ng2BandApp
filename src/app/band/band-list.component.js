@@ -13,17 +13,36 @@ var BandListComponent = (function () {
     function BandListComponent(bandService, router) {
         this.bandService = bandService;
         this.router = router;
-        this.loading = false;
     }
     BandListComponent.prototype.ngOnInit = function () {
+        /* RxObservable */
+        //in this style you convert the Observable<band[]> from the service here
+        /*
+        this.bandService.getBandsRxObservable()
+        .subscribe(
+            (response: band[]): void => {
+                this.bandsRxObservable = response;
+                
+            },
+            (error: any): void => {
+                
+                this.errorMessage = <any>error;
+            }
+        );*/
         var _this = this;
-        this.loading = true;
-        this.bandService.getBands()
-            .subscribe(function (response) {
-            _this.bands = response;
-            _this.loading = false;
-        }, function (error) {
-            _this.errorMessage = error;
+        //in this style you do not convert Observable. add | async pipe in html. it handles the rest
+        /*this.bandsRxObservable = this.bandService.getBands_RxObservable()
+        .catch((err) => {
+            console.log(err);
+            return this.bands;
+        });*/
+        /* Promise */
+        this.bandService.getBands_Promise() //Ward Bell recommends this
+            .then(function (response) {
+            _this.bandsPromise = response;
+        })
+            .catch(function (error) {
+            console.log(error);
         });
     };
     BandListComponent.prototype.onSelect = function (band) {
@@ -31,7 +50,9 @@ var BandListComponent = (function () {
     };
     BandListComponent = __decorate([
         core_1.Component({
-            directives: [button_1.MD_BUTTON_DIRECTIVES, card_1.MD_CARD_DIRECTIVES, grid_list_1.MD_GRID_LIST_DIRECTIVES],
+            directives: [button_1.MD_BUTTON_DIRECTIVES,
+                card_1.MD_CARD_DIRECTIVES,
+                grid_list_1.MD_GRID_LIST_DIRECTIVES],
             moduleId: module.id,
             selector: 'band-list',
             templateUrl: 'band-list.component.html'
