@@ -1,8 +1,15 @@
 <div *ngIf="band">
   <h2>Band</h2>
-  <label>Id </label><span>{{band.id}}</span>
-  <label>Name </label><span>{{band.name}}</span>
-  <label>Rating </label><span>{{band.rating}}</span>
+  <form>
+    <label>Id</label><span>{{band.id}}</span>
+    <br>
+    <label>Name</label>
+    <input type="text" required [(ngModel)]="band.name" name="name" #name="ngModel">
+    <div [hidden]="name.valid">Band name is required</div>
+    <br>
+    <label>Rating</label>
+    <input type="text" required [(ngModel)]="band.rating" name="bandRating">
+  </form>
 
   <h2>Albums</h2>
   <div *ngIf="band.albums.length">
@@ -17,7 +24,7 @@
 
 <song-list [albumId]="selectedAlbumId" 
             *ngIf="selectedAlbumId"
-            (emitToParent)=emitFromChild($event)></song-list>
+            (emitToParent)="emitFromChild($event)"></song-list>
 
 
 

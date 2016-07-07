@@ -1,15 +1,18 @@
 import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/common';
 import {ActivatedRoute} from "@angular/router";
+
 import {BandService} from './band.service';
 import {band} from './band.model';
-import { album } from '../album/album.model';
-import { SongListComponent } from '../song/song-list/song-list.component';
+import {album} from '../album/album.model';
+import {SongListComponent} from '../song/song-list/song-list.component';
 import {song} from '../song/song.model';
 
 @Component({
     directives: [SongListComponent],
     moduleId: module.id,
     selector: 'band-detail',
+    styleUrls: ['band-detail.css'],
     templateUrl: 'band-detail.component.html'
 })
 export class BandDetailComponent implements OnInit {
