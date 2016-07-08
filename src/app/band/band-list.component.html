@@ -12,7 +12,7 @@
 
 <span *ngIf="errorMessage">{{errorMessage | json}}</span>
 
-<table *ngIf="bandsRxObservable">
+<table *ngIf="bands">
   <thead>
     <tr>
       <th>Id</th>
@@ -20,7 +20,7 @@
       <th>Rating</th>
     </tr>
   </thead>
-  <tr *ngFor="let band of bandsRxObservable | async"
+  <tr *ngFor="let band of bands"
       (click)="onSelect(band)">
     <td>{{band.id}}</td>
     <td>{{band.name}}</td>

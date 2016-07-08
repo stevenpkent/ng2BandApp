@@ -1,17 +1,26 @@
 <div *ngIf="band">
   <h2>Band</h2>
-  <form (ngSubmit)="onSubmit()" #bandDetailForm="ngForm">
+  <form 
+    (ngSubmit)="onSubmit()" 
+    #bandDetailForm="ngForm">
     <label>Id</label><span>{{band.id}}</span>
     <br>
     <label>Name</label>
-    <input type="text" required [(ngModel)]="band.name" name="bandName" #bandName="ngModel">
-    <div [hidden]="bandName.valid || bandName.pristine">Band name is required</div>
+    <input type="text" required name="bandName" 
+      [(ngModel)]="band.name" 
+      #bandName="ngModel">
+    <div 
+      [hidden]="bandName.valid || bandName.pristine">Band name is required</div>
     <br>
     <label>Rating</label>
-    <input type="text" required [(ngModel)]="band.rating" name="bandRating" #bandRating="ngModel">
-    <div [hidden]="bandRating.valid || bandRating.pristine">Band rating is required</div>
+    <input type="text" required name="bandRating" 
+      [(ngModel)]="band.rating" 
+      #bandRating="ngModel">
+    <div 
+      [hidden]="bandRating.valid || bandRating.pristine">Band rating is required</div>
     <br>
-    <button type="submit" [disabled]="!bandDetailForm.form.valid">Submit</button>
+    <button type="submit" 
+      [disabled]="bandDetailForm.form.valid === false">Submit</button>
   </form>
 
   <h2>Albums</h2>

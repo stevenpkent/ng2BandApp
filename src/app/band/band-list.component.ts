@@ -20,7 +20,7 @@ import {band} from './band.model';
 })
 export class BandListComponent implements OnInit {
     bandsRxObservable: Observable<band[]>;
-    bandsPromise: band[];
+    bands: band[];
     errorMessage: any;
 
     constructor(private bandService: BandService,
@@ -28,39 +28,37 @@ export class BandListComponent implements OnInit {
 
     ngOnInit(): void {
         /* RxObservable */
-        //in this style you convert the Observable<band[]> from the service here
-        /*
-        this.bandService.getBandsRxObservable()
+        //in this style you convert the Observable<band[]> from the service to band[]
+        this.bandService.getBands_RxObservable()
         .subscribe(
             (response: band[]): void => {
-                this.bandsRxObservable = response;
-                
+                this.bands = response;
             },
             (error: any): void => {
-                
-                this.errorMessage = <any>error;
+                this.errorMessage = error;
             }
-        );*/
+        );
 
-        //in this style you do not convert Observable. add | async pipe in html. it handles the rest
-        /*this.bandsRxObservable = this.bandService.getBands_RxObservable()
+        //in this style you do not convert Observable<band[]> to band[] 
+        //add | async pipe to the *ngFor in html. it handles the rest
+        /*
+        this.bandsRxObservable = this.bandService.getBands_RxObservable()
         .catch((err) => {
             console.log(err);
-            return this.bands; 
-        });*/  
+            return this.bandsRxObservable; 
+        });
+        */
 
         /* Promise */
+        /*
         this.bandService.getBands_Promise() //Ward Bell recommends this
         .then((response: band[]): void => {
             this.bandsPromise = response;        
         })
         .catch((error: any): void => {
             console.log(error);
-        })
-        //.finally(() => {
-
-        //})
-        ;
+        });
+        */
     }
 
     onSelect(band: band): void {

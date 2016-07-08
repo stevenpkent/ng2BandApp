@@ -49,6 +49,6 @@ export class BandDetailComponent implements OnInit {
     }
 
     onSubmit() {
-      alert('to do: add update capability...');
+      this.bandService.postBand(); //putBand(this.band);
     }
 }

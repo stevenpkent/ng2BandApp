@@ -4,10 +4,7 @@
   ],
   "rules": {
     "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
+    "comment-format": [false, "check-space"], //comments DO NOT have to be like this // blah blah
     "curly": true,
     "eofline": true,
     "forin": true,
@@ -17,10 +14,7 @@
     ],
     "label-position": true,
     "label-undefined": true,
-    "max-line-length": [
-      true,
-      140
-    ],
+    "max-line-length": [true, 140], //maximum line length of 140 characters
     "member-access": false,
     "member-ordering": [
       true,
