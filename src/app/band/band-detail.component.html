@@ -1,5 +1,5 @@
 <div *ngIf="band">
-  <h2>Band</h2>
+  <h2>{{band.name}}</h2>
   <form 
     (ngSubmit)="onSubmit()" 
     #bandDetailForm="ngForm">
@@ -25,20 +25,8 @@
     {{putBandResponse}}
   </form>
 
-  <h2>Albums</h2>
-  <div *ngIf="band.albums.length">
-    <ul *ngFor="let album of band.albums">
-      <li (click)="selectedAlbumId = album.id">{{album.name}} - {{album.year}}</li>
-    </ul>
-  </div>
-  <div *ngIf="!band.albums.length">
-    <span>No albums for this band currently</span>
-  </div>
+  <album-list [albums]="band.albums"></album-list>
 </div>
-
-<song-list [albumId]="selectedAlbumId" 
-            *ngIf="selectedAlbumId"
-            (emitToParent)="emitFromChild($event)"></song-list>
 
 
 

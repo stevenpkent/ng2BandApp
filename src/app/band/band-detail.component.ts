@@ -1,15 +1,13 @@
-import {Component, OnInit, OnDestroy, ViewChild} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 
 import {BandService} from './band.service';
 import {band} from './band.model';
-import {album} from '../album/album.model';
-import {SongListComponent} from '../song/song-list/song-list.component';
-import {song} from '../song/song.model';
+import { AlbumListComponent } from '../album/album-list/album-list.component';
 
 @Component({
-    directives: [SongListComponent],
+    directives: [AlbumListComponent],
     moduleId: module.id,
     selector: 'band-detail',
     styleUrls: ['band-detail.css'],
@@ -19,7 +17,7 @@ export class BandDetailComponent implements OnInit {
     band: band;
     selectedAlbumId: number;
     private subscription: any; //keep a reference to the routeParam subscription so we can clean up in ngOnDestroy
-    @ViewChild(SongListComponent) viewChild: SongListComponent; //allows parent access into a child
+    
     putBandResponse: string;
 
     constructor(private route: ActivatedRoute,
@@ -44,10 +42,7 @@ export class BandDetailComponent implements OnInit {
       this.subscription.unsubscribe(); //unsubscribe before angular destroys the component
     }
 
-    emitFromChild(songName: string) {
-        alert('you chose ' + songName);
-        this.viewChild.calledFromParent(songName); //parent calling a function that exists on the child
-    }
+   
 
     onSubmit() {
       this.putBandResponse = '';
@@ -57,5 +52,9 @@ export class BandDetailComponent implements OnInit {
         response => this.putBandResponse = response,
         error => this.putBandResponse = error
       );
+
+      setTimeout(() => {
+      this.putBandResponse = '';
+    }, 5000);
     }
 }

@@ -48,6 +48,7 @@ const barrels: string[] = [
   'app/shared',
   'app/band/band-list',
   'app/song/song-list',
+  'app/album/album-list',
   /** @cli-barrel */
 ];
 
