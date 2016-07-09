@@ -20,6 +20,7 @@ export class BandDetailComponent implements OnInit {
     selectedAlbumId: number;
     private subscription: any; //keep a reference to the routeParam subscription so we can clean up in ngOnDestroy
     @ViewChild(SongListComponent) viewChild: SongListComponent; //allows parent access into a child
+    putBandResponse: string;
 
     constructor(private route: ActivatedRoute,
                 private bandService: BandService) { }
@@ -49,6 +50,12 @@ export class BandDetailComponent implements OnInit {
     }
 
     onSubmit() {
-      this.bandService.postBand(); //putBand(this.band);
+      this.putBandResponse = '';
+
+      this.bandService.putBand(this.band)
+      .subscribe(
+        response => this.putBandResponse = response,
+        error => this.putBandResponse = error
+      );
     }
 }

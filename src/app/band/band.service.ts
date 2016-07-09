@@ -29,27 +29,23 @@ import {band} from './band.model';
     .catch(this.handleError);
   }
 
-  putBand(band: band): void { //Observable<band> {
-    let body = JSON.stringify(band);
+  putBand(band: band): Observable<string> { //Observable<band> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     let url = `${this.baseUrl}${band.id}`;
 
-    //return 
-    this.http.put(url, body, options)
-                    //.map((response: Response) => 
-                    //.catch(this.handleError)
-                    .catch(this.handleError);
-
+    return this.http.put(url, band, options)
+    .map((response: Response) => 'Band updated')
+    .catch(this.handleError);
   }
 
   postBand(): void {
-    let b = new band();
+    /*let b = new band();
     b.name = 'fake';
     b.rating = 3;
-    //let headers = new Headers({ 'Content-Type': 'application/json' });
-    //let options = new RequestOptions({ headers: headers });
-    this.http.post(this.baseUrl, b); //, options);
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    this.http.post(this.baseUrl, b); //, options);*/
 
   }
 
