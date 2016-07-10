@@ -39,14 +39,23 @@ import {band} from './band.model';
     .catch(this.handleError);
   }
 
-  postBand(): void {
-    /*let b = new band();
-    b.name = 'fake';
-    b.rating = 3;
+  postBand(band: band): Observable<band> {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    this.http.post(this.baseUrl, b); //, options);*/
 
+    return this.http.post(this.baseUrl, band, options)
+    .map((response: Response) => <band>response.json())
+    .catch(this.handleError);
+  }
+
+  deleteBand(bandId: number): Observable<string> {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let url = `${this.baseUrl}${bandId}`;
+
+    return this.http.delete(url, options)
+    .map((response: Response) => 'OK')
+    .catch(this.handleError);
   }
 
   private handleError(error: any) {

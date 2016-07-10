@@ -1,31 +1,19 @@
 <div *ngIf="band">
   <h2>{{band.name}}</h2>
-  <form 
-    (ngSubmit)="onSubmit()" 
-    #bandDetailForm="ngForm">
-    <label>Id</label><span>{{band.id}}</span>
-    <br>
+  <form (ngSubmit)="onSubmit()" #bandDetailForm="ngForm">
+    <label>Id</label><span>{{band.id}}</span><br>
     <label>Name</label>
-    <input type="text" required name="bandName" 
-      [(ngModel)]="band.name" 
-      #bandName="ngModel">
-    <div 
-      [hidden]="bandName.valid || bandName.pristine">Band name is required</div>
-    <br>
+    <input type="text" required name="bandName" [(ngModel)]="band.name" #bandName="ngModel">
+    <div [hidden]="bandName.valid || bandName.pristine">Band name is required</div><br>
     <label>Rating</label>
-    <input type="text" required name="bandRating" 
-      [(ngModel)]="band.rating" 
-      #bandRating="ngModel">
-    <div 
-      [hidden]="bandRating.valid || bandRating.pristine">Band rating is required</div>
-    <br>
-    <button type="submit" 
-      [disabled]="bandDetailForm.form.valid === false">Submit</button>
-    <br>
-    {{putBandResponse}}
+    <input type="text" required name="bandRating" [(ngModel)]="band.rating" #bandRating="ngModel">
+    <div [hidden]="bandRating.valid || bandRating.pristine">Band rating is required</div><br>
+    <button type="submit" [disabled]="bandDetailForm.form.valid === false">Submit</button><br>
+    <button (click)="deleteBand()" *ngIf="band.id">Delete</button><br>
+    {{serviceResponse}}
   </form>
 
-  <album-list [albums]="band.albums"></album-list>
+  <album-list *ngIf="band.albums" [albums]="band.albums"></album-list>
 </div>
 
 
