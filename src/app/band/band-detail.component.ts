@@ -1,10 +1,10 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 import {BandService} from './band.service';
 import {band} from './band.model';
-import { AlbumListComponent } from '../album/album-list/album-list.component';
+import {AlbumListComponent} from '../album/album-list/album-list.component';
 
 @Component({
     directives: [AlbumListComponent],
@@ -19,18 +19,18 @@ export class BandDetailComponent implements OnInit {
     private subscription: any; //keep a reference to the routeParam subscription so we can clean up in ngOnDestroy
     serviceResponse: string;
 
-    constructor(private route: ActivatedRoute, private bandService: BandService, private router: Router) { }
+    constructor(private bandService: BandService, private router: Router) { }
 
     ngOnInit(): void {
-      this.subscription = this.route.params.subscribe(params => {
+      this.subscription = this.router.routerState.queryParams.subscribe(params => {
         let id = +params['id']; //params are always type string. convert to number using +
 
-        if (id === 0) { //creating a new band
+        if (!id) { //id is passed as an optional querystring parameter. here we are creating a new band
           this.band = new band();
           return;
         }
 
-        this.bandService.getBand(id)
+        this.bandService.getBand(id) //here we are viewing an existing band
         .subscribe(
           (response: band): void => {
             this.band = response;
@@ -48,7 +48,7 @@ export class BandDetailComponent implements OnInit {
     onSubmit() {
       this.serviceResponse = '';
 
-      if (this.band.id) { //PUT
+      if (this.band.id) { //PUT. update existing band
         this.bandService.putBand(this.band)
         .subscribe(
           response => {
@@ -59,7 +59,7 @@ export class BandDetailComponent implements OnInit {
           }
         );
       }
-      else { //POST
+      else { //POST. create new band
         this.bandService.postBand(this.band)
         .subscribe(
           response => {

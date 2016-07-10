@@ -4,7 +4,7 @@ import {BandDetailComponent} from './band/band-detail.component';
 
 const routes: RouterConfig = [
   { path: 'bands', component: BandListComponent },
-  { path: 'band/:id', component: BandDetailComponent }
+  { path: 'band', component: BandDetailComponent }
 ];
 
 export const APP_ROUTER_PROVIDERS = [
