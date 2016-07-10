@@ -1,7 +1,7 @@
 <div *ngIf="band">
   <h2>{{band.name}}</h2>
   <form (ngSubmit)="onSubmit()" #bandDetailForm="ngForm">
-    <label>Id</label><span>{{band.id}}</span><br>
+    <label *ngIf="band.id">Id</label><span>&nbsp;{{band.id}}</span><br>
     <label>Name</label>
     <input type="text" required name="bandName" [(ngModel)]="band.name" #bandName="ngModel">
     <div [hidden]="bandName.valid || bandName.pristine">Band name is required</div><br>
