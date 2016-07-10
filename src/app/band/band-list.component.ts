@@ -60,9 +60,4 @@ export class BandListComponent implements OnInit {
         });
         */
     }
-
-    onSelect(band: band): void {
-        this.router.navigate(['/band', band.id]);
-    }
-
 }
