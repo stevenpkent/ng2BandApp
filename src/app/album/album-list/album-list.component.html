@@ -1,14 +1,29 @@
 <h2>Albums</h2>
-<div *ngIf="albums">
+
+<div *ngIf="albums.length">
   <ul *ngFor="let album of albums">
     <li (click)="selectedAlbumId = album.id">{{album.name}} - {{album.year}}</li>
   </ul>
 </div>
+
 <div *ngIf="!albums.length">
   <span>No albums for this band currently</span>
 </div>
 
-<song-list [albumId]="selectedAlbumId" 
-            *ngIf="selectedAlbumId"
-            (emitToParent)="emitFromChild($event)">
-</song-list>
+<a (click)="showAddAlbum = !showAddAlbum">Add Album</a>
+<div *ngIf="showAddAlbum">
+  <form (ngSubmit)="postAlbum()" #albumDetailForm="ngForm">
+      <label *ngIf="album.id">Id</label><span>&nbsp;{{album.id}}</span><br>
+      <label>Name</label>
+      <input type="text" required name="albumName" [(ngModel)]="album.name" #albumName="ngModel">
+      <div [hidden]="albumName.valid || albumName.pristine">Album name is required</div><br>
+      <label>Year</label>
+      <input type="text" required name="albumYear" [(ngModel)]="album.year" #albumYear="ngModel">
+      <div [hidden]="albumYear.valid || albumYear.pristine">Album year is required</div><br>
+      <button type="submit" [disabled]="albumDetailForm.form.valid === false">Save Album</button><br>
+      {{serviceResponse}}
+  </form>
+</div>
+
+<song-list [albumId]="selectedAlbumId" *ngIf="selectedAlbumId" (emitToParent)="emitFromChild($event)"></song-list>
+

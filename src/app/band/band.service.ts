@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {band} from './band.model';
 
 @Injectable() export class BandService {
-  baseUrl: string = 'http://testspkapi.azurewebsites.net/api/artists/';
+  baseUrl: string = 'http://testspkapi.azurewebsites.net/api/band/';
 
   constructor(private http: Http) {}
 
