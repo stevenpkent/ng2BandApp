@@ -10,18 +10,26 @@
   <span>No albums for this band currently</span>
 </div>
 
-<a (click)="showAddAlbum = !showAddAlbum">Add Album</a>
+<a (click)="addAlbumProcess()">Add Album</a>
 <div *ngIf="showAddAlbum">
   <form (ngSubmit)="postAlbum()" #albumDetailForm="ngForm">
-      <label *ngIf="album.id">Id</label><span>&nbsp;{{album.id}}</span><br>
+      <label *ngIf="newAlbum.id">Id</label><span>&nbsp;{{newAlbum.id}}</span><br>
+
       <label>Name</label>
-      <input type="text" required name="albumName" [(ngModel)]="album.name" #albumName="ngModel">
+      <input type="text" required name="albumName" [(ngModel)]="newAlbum.name" #albumName="ngModel">
       <div [hidden]="albumName.valid || albumName.pristine">Album name is required</div><br>
+
       <label>Year</label>
-      <input type="text" required name="albumYear" [(ngModel)]="album.year" #albumYear="ngModel">
+      <input type="text" required name="albumYear" [(ngModel)]="newAlbum.year" #albumYear="ngModel">
       <div [hidden]="albumYear.valid || albumYear.pristine">Album year is required</div><br>
+
+      <label>Rating</label>
+      <input type="text" required name="albumRating" [(ngModel)]="newAlbum.rating" #albumRating="ngModel">
+      <div [hidden]="albumRating.valid || albumRating.pristine">Album rating is required</div><br>
+
       <button type="submit" [disabled]="albumDetailForm.form.valid === false">Save Album</button><br>
-      {{serviceResponse}}
+
+      {{ui.error}}
   </form>
 </div>
 

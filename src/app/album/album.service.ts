@@ -12,13 +12,13 @@ import {album} from './album.model';
 
   getAlbumsByBandId(id: number): Observable<album[]> {
     let url = `${this.baseUrl}getAlbumsByBandId/${id}`;
-    return this.http.get(url, this.options)
+    return this.http.get(url)
     .map((response: Response) => <album[]>response.json())
     .catch(this.handleError);
   }
 
   postAlbum(album: album): Observable<string> {
-    return this.http.post(this.baseUrl, this.options)
+    return this.http.post(this.baseUrl, album, this.options)
     .map((response: Response) => 'OK')
     .catch(this.handleError);
   }
