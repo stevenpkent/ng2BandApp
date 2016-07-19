@@ -11,8 +11,7 @@ const map: any = {
 };
 
 /** User packages configuration. */
-const packages: any = {
-};
+const packages: any = { };
 
 const materialPkgs: string[] = [
   'core',
