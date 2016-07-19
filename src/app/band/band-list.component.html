@@ -1,17 +1,47 @@
-<!--
+<img src="app/asset/image/loading.gif" width="80px" *ngIf="loading">
+
+<!-- material grid list, did not work that well as a layout device
+<div *ngIf="bands">
 <md-grid-list cols="4" [style.background]="'lightblue'">
-  <md-grid-tile>One</md-grid-tile>
-  <md-grid-tile>Two</md-grid-tile>
-  <md-grid-tile>Three</md-grid-tile>
-  <md-grid-tile>Four</md-grid-tile>
+  <md-grid-tile>Id</md-grid-tile>
+  <md-grid-tile>Name</md-grid-tile>
+  <md-grid-tile>Rating</md-grid-tile>
 </md-grid-list>
+
+<div *ngFor="let band of bands">
+<md-grid-list cols="4" 
+      (click)="router.navigate(['/band'], { queryParams: { id: band.id } })">
+    <md-grid-tile>{{band.id}}</md-grid-tile>
+    <md-grid-tile>{{band.name}}</md-grid-tile>
+    <md-grid-tile>{{band.rating}}</md-grid-tile>
+ </md-grid-list>
+</div>
+</div>
 -->
 
-<img src="app/asset/image/loading.gif" width="80px"
-  *ngIf="loading">
+<!-- material card-->
+<md-card *ngIf="bands"> 
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let band of bands" (click)="router.navigate(['/band'], { queryParams: { id: band.id } })">
+        <td>{{band.id}}</td>
+        <td>{{band.name}}</td>
+        <td>{{band.rating}}</td>
+      </tr>
+    </tbody>
+  </table>   
+</md-card>
 
 <span *ngIf="errorMessage">{{errorMessage | json}}</span>
 
+<!--
 <table *ngIf="bands">
   <thead>
     <tr>
@@ -27,7 +57,9 @@
     <td>{{band.rating}}</td>
   </tr>
 </table>
+-->
 
+<!--
 <table *ngIf="bandsPromise">
   <thead>
     <tr>
@@ -43,5 +75,6 @@
     <td>{{band.rating}}</td>
   </tr>
 </table>
+-->
 
-<button md-raised-button (click)="router.navigate(['/band'])">Add Band</button>
+<br><button md-raised-button (click)="router.navigate(['/band'])">Add Band</button>
