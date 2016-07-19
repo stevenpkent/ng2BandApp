@@ -8,8 +8,8 @@
     <label>Rating</label>
     <input type="text" required name="bandRating" [(ngModel)]="band.rating" #bandRating="ngModel">
     <div [hidden]="bandRating.valid || bandRating.pristine">Band rating is required</div><br>
-    <button type="submit" [disabled]="bandDetailForm.form.valid === false">Submit</button><br>
-    <button (click)="deleteBand()" *ngIf="band.id">Delete</button><br>
+    <button md-raised-button type="submit" [disabled]="bandDetailForm.form.valid === false">Submit</button>
+    <button md-raised-button (click)="deleteBand()" *ngIf="band.id">Delete</button><br>
     {{serviceResponse}}
   </form>
 

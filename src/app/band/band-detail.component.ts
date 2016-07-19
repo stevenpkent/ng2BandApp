@@ -1,13 +1,14 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
+import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 
 import {BandService} from './band.service';
 import {band} from './band.model';
 import {AlbumListComponent} from '../album/album-list/album-list.component';
 
 @Component({
-    directives: [AlbumListComponent],
+    directives: [AlbumListComponent, MD_BUTTON_DIRECTIVES],
     moduleId: module.id,
     selector: 'band-detail',
     styleUrls: ['band-detail.css'],

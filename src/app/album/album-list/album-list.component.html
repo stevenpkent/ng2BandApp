@@ -10,7 +10,8 @@
   <span>No albums for this band currently</span>
 </div>
 
-<a (click)="addAlbumProcess()">Add Album</a>
+<button md-raised-button (click)="addAlbumProcess()">Add Album</button>
+
 <div *ngIf="showAddAlbum">
   <form (ngSubmit)="postAlbum()" #albumDetailForm="ngForm">
       <label *ngIf="newAlbum.id">Id</label><span>&nbsp;{{newAlbum.id}}</span><br>
@@ -27,7 +28,7 @@
       <input type="text" required name="albumRating" [(ngModel)]="newAlbum.rating" #albumRating="ngModel">
       <div [hidden]="albumRating.valid || albumRating.pristine">Album rating is required</div><br>
 
-      <button type="submit" [disabled]="albumDetailForm.form.valid === false">Save Album</button><br>
+      <button md-raised-button type="submit" [disabled]="albumDetailForm.form.valid === false">Save Album</button><br>
 
       {{ui.error}}
   </form>

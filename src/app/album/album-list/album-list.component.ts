@@ -1,7 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MD_CARD_DIRECTIVES } from '@angular2-material/card';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import { MD_GRID_LIST_DIRECTIVES } from '@angular2-material/grid-list';
 
 import {SongListComponent} from '../../song/song-list/song-list.component';
 import {album} from '../../album/album.model';
@@ -10,9 +8,7 @@ import {AlbumService} from '../../album/album.service';
 
 @Component({
   directives: [SongListComponent,
-                MD_CARD_DIRECTIVES,
-                MD_BUTTON_DIRECTIVES,
-                MD_GRID_LIST_DIRECTIVES],
+                MD_BUTTON_DIRECTIVES],
   moduleId: module.id,
   providers: [AlbumService],
   selector: 'album-list',
