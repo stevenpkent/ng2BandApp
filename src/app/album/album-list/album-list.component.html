@@ -1,15 +1,16 @@
 <h2>Albums</h2>
 
 <div *ngIf="albums.length">
-  <ul *ngFor="let album of albums">
-    <li (click)="selectedAlbumId = album.id">{{album.name}} - {{album.year}}</li>
-  </ul>
+  <md-card *ngFor="let album of albums"> 
+    <md-content (click)="selectedAlbumId = album.id">{{album.name}} - {{album.year}}</md-content>
+  </md-card>
 </div>
 
 <div *ngIf="!albums.length">
   <span>No albums for this band currently</span>
 </div>
 
+<br>
 <button md-raised-button (click)="addAlbumProcess()">Add Album</button>
 
 <div *ngIf="showAddAlbum">

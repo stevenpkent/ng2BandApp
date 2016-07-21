@@ -1,14 +1,13 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
 
 import {BandService} from './band.service';
 import {band} from './band.model';
 import {AlbumListComponent} from '../album/album-list/album-list.component';
 
 @Component({
-    directives: [AlbumListComponent, MD_BUTTON_DIRECTIVES],
+    directives: [AlbumListComponent],
     moduleId: module.id,
     selector: 'band-detail',
     styleUrls: ['band-detail.css'],
@@ -53,7 +52,7 @@ export class BandDetailComponent implements OnInit {
         this.bandService.putBand(this.band)
         .subscribe(
           response => {
-            this.serviceResponse = response;
+            this.serviceResponse = `${this.band.name} ${response}`;
           },
           error => {
             this.serviceResponse = error;
@@ -65,7 +64,7 @@ export class BandDetailComponent implements OnInit {
         .subscribe(
           response => {
             this.band = response;
-            this.serviceResponse = `new band id is ${this.band.id}`;
+            this.serviceResponse = `new band is ${this.band.name}, id of ${this.band.id}`;
           },
           error => {
             this.serviceResponse = error;

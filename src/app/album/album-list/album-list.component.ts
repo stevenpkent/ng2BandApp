@@ -1,14 +1,11 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-
 import {SongListComponent} from '../../song/song-list/song-list.component';
 import {album} from '../../album/album.model';
 import {band} from '../../band/band.model';
 import {AlbumService} from '../../album/album.service';
 
 @Component({
-  directives: [SongListComponent,
-                MD_BUTTON_DIRECTIVES],
+  directives: [SongListComponent],
   moduleId: module.id,
   providers: [AlbumService],
   selector: 'album-list',

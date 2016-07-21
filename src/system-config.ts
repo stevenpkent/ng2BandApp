@@ -17,14 +17,14 @@ const materialPkgs: string[] = [
   'core',
   'button',
   'card',
-  'grid-list'
+  'grid-list',
+  'input'
 ];
 
 materialPkgs.forEach((pkg) => {
   packages[`@angular2-material/${pkg}`] = {main: `${pkg}.js`};
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
  * Everything underneath this line is managed by the CLI.
  **********************************************************************************************/

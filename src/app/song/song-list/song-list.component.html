@@ -1,9 +1,10 @@
 <div>
   <h2>Songs</h2>
+ 
   <div *ngIf="songs && songs.length">
-    <ul *ngFor="let song of songs" (click)="selectSong(song)">
-      {{song.name}}
-    </ul>
+    <md-card *ngFor="let song of songs" (click)="selectSong(song)">
+      <md-content>{{song.name}}</md-content>
+    </md-card>
   </div>
 
   <div *ngIf="songs && !songs.length">
