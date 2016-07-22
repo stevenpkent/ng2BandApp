@@ -5,16 +5,14 @@
     <label *ngIf="band.id">Id</label><span>&nbsp;{{band.id}}</span><br>
 
     <label>Name</label>
-    <input type="text" required name="bandName" [(ngModel)]="band.name" #bandName="ngModel">
+    <input type="text" name="bandName" required [(ngModel)]="band.name" ngControl="bandName" #bandName="ngModel">
     <div [hidden]="bandName.valid || bandName.pristine">Band name is required</div><br>
-
-    <!--<md-input [(ngModel)]="band.name" [type]="text" [attr.name]="test"></md-input>-->
     
     <label>Rating</label>
-    <input type="text" required name="bandRating" [(ngModel)]="band.rating" #bandRating="ngModel">
+    <input type="text" name="bandRating" required [(ngModel)]="band.rating" #bandRating="ngModel">
     <div [hidden]="bandRating.valid || bandRating.pristine">Band rating is required</div><br>
 
-    <button md-raised-button type="submit" [disabled]="bandDetailForm.form.valid === false">Submit</button>
+    <button md-raised-button type="submit" [disabled]="!bandDetailForm.form.valid">Submit</button>
     <button md-raised-button (click)="deleteBand()" *ngIf="band.id">Delete</button><br>
     {{serviceResponse}}
   </form>
