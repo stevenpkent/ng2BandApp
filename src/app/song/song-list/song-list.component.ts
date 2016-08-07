@@ -1,7 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnChanges, SimpleChange} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {MD_CARD_DIRECTIVES} from '@angular2-material/card';
-import {song} from '../song.model';
+import {Song} from '../song.model';
 import {SongService} from '../song.service';
 
 @Component({
@@ -15,9 +15,9 @@ import {SongService} from '../song.service';
 export class SongListComponent implements OnChanges {
   @Input() albumId: number;
   @Output() emitToParent = new EventEmitter<string>(); //emit data to parent component
-  songs: song[];
+  songs: Song[];
   showAddSong: boolean;
-  newSong: song;
+  newSong: Song;
   ui: any = {};
 
   constructor(private songService: SongService) {}
@@ -29,7 +29,7 @@ export class SongListComponent implements OnChanges {
   getSongs(albumId: number): void {
       this.songService.getSongs(albumId)
       .subscribe(
-        (response: song[]): void => {
+        (response: Song[]): void => {
           this.songs = response;
         },
         (error: any): void => {
@@ -37,7 +37,7 @@ export class SongListComponent implements OnChanges {
       );
   }
 
-  selectSong(song: song): void {
+  selectSong(song: Song): void {
     this.emitToParent.emit(song.name); //emit data to parent component
   }
 
@@ -48,7 +48,7 @@ export class SongListComponent implements OnChanges {
   addSongProcess(): void {
     this.showAddSong = !this.showAddSong;
     if (this.showAddSong) {
-      this.newSong = new song();
+      this.newSong = new Song();
     }
     else {
       this.newSong = null;

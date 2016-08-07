@@ -1,7 +1,7 @@
 import {album} from '../album/album.model';
 import {band} from '../band/band.model';
 
-export class song {
+export class Song {
     name: string;
     album: album;
     albumId: number;
