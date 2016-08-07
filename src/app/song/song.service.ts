@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import { song } from './song.model';
+import { Song } from './song.model';
 
 @Injectable()
 export class SongService {
@@ -11,14 +11,14 @@ export class SongService {
 
   constructor(private http: Http) {}
 
-  getSongs(albumId: number): Observable<song[]> {
+  getSongs(albumId: number): Observable<Song[]> {
     var urlSuffix: string = 'getSongs/';
     return this.http.get(`${this.baseUrl}${urlSuffix}${albumId}`)
-      .map((response: Response) => <song[]>response.json())
+      .map((response: Response) => <Song[]>response.json())
       .catch(this.handleError);
   }
 
-  postSong(song: song): Observable<string> {
+  postSong(song: Song): Observable<string> {
     return this.http.post(this.baseUrl, song, this.options)
       .map((response: Response) => 'OK')
       .catch(this.handleError);

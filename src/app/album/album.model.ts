@@ -1,4 +1,4 @@
-import { song } from '../song/song.model';
+import { Song } from '../song/song.model';
 import { band } from '../band/band.model';
 
 export class album {
@@ -6,6 +6,6 @@ export class album {
     name: string;
     rating: number;
     year: number;
-    songs: song[];
+    songs: Song[];
     band: band;
 }
