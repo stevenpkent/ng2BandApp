@@ -17,7 +17,7 @@ import {band} from './band.model';
     moduleId: module.id,
     providers: [],
     selector: 'band-list',
-    styleUrls: [],
+    styleUrls: ['band-list.component.css'],
     templateUrl: 'band-list.component.html'
 })
 export class BandListComponent implements OnInit {

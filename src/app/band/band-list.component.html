@@ -23,15 +23,13 @@
 <md-card *ngIf="bands"> 
   <table>
     <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Rating</th>
+      <tr>       
+        <th class="headerTextAlign">Name</th>
+        <th class="headerTextAlign">Rating</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let band of bands" (click)="router.navigate(['/band'], { queryParams: { id: band.id } })">
-        <td>{{band.id}}</td>
+      <tr *ngFor="let band of bands" (click)="router.navigate(['/band'], { queryParams: { id: band.id } })">       
         <td>{{band.name}}</td>
         <td>{{band.rating}}</td>
       </tr>
