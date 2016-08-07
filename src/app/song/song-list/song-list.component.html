@@ -10,5 +10,20 @@
   <div *ngIf="songs && !songs.length">
     <span>No songs for this album currently</span>
   </div>
+  <br>
+  <button md-raised-button (click)="addSongProcess()">Add Song</button>
 
+<div *ngIf="showAddSong">
+  <form (ngSubmit)="addSong()" #songDetailForm="ngForm">
+      <label *ngIf="newSong.id">Id</label><span>&nbsp;{{newSong.id}}</span><br>
+
+      <label>Name</label>
+      <input type="text" required name="songName" [(ngModel)]="newSong.name" #songName="ngModel">
+      <div [hidden]="songName.valid || songName.pristine">Song name is required</div><br>
+
+      <button md-raised-button type="submit" [disabled]="songDetailForm.form.valid === false">Save Song</button><br>
+
+      {{ui.error}}
+  </form>
+</div>
 </div>

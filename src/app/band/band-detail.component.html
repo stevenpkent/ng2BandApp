@@ -2,8 +2,6 @@
   <h2>{{band.name}}</h2>
   <form (ngSubmit)="onSubmit()" #bandDetailForm="ngForm">
 
-    <label *ngIf="band.id">Id</label><span>&nbsp;{{band.id}}</span><br>
-
     <label>Name</label>
     <input type="text" name="bandName" required [(ngModel)]="band.name" ngControl="bandName" #bandName="ngModel">
     <div [hidden]="bandName.valid || bandName.pristine">Band name is required</div><br>
@@ -11,6 +9,8 @@
     <label>Rating</label>
     <input type="text" name="bandRating" required [(ngModel)]="band.rating" #bandRating="ngModel">
     <div [hidden]="bandRating.valid || bandRating.pristine">Band rating is required</div><br>
+
+    <br>
 
     <button md-raised-button type="submit" [disabled]="!bandDetailForm.form.valid">Submit</button>
     <button md-raised-button (click)="deleteBand()" *ngIf="band.id">Delete</button><br>
