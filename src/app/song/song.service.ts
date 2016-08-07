@@ -12,7 +12,7 @@ export class SongService {
   constructor(private http: Http) {}
 
   getSongs(albumId: number): Observable<Song[]> {
-    var urlSuffix: string = 'getSongs/';
+    let urlSuffix = 'getSongs/';
     return this.http.get(`${this.baseUrl}${urlSuffix}${albumId}`)
       .map((response: Response) => <Song[]>response.json())
       .catch(this.handleError);
